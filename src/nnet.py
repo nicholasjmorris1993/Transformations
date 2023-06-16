@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.decomposition import PCA
+from sklearn.neural_network import BernoulliRBM
 
 
 def features(df):
@@ -19,13 +19,13 @@ class Features:
         df = scaler.fit_transform(df)
         df = pd.DataFrame(df, columns=columns)
 
-        # train a PCA model
-        n_comp = df.shape[1]  # number of principal components
-        component = PCA(n_components=n_comp, random_state=42)
+        # train a neural network model
+        n_comp = df.shape[1]  # number of hidden and output nodes
+        component = BernoulliRBM(n_components=n_comp, random_state=42)
         component.fit(df)
 
         # compute features for all the data
         self.features = pd.DataFrame(
             component.transform(df), 
-            columns=[f"PC{i + 1}" for i in range(n_comp)],
+            columns=[f"C{i + 1}" for i in range(n_comp)],
         )
