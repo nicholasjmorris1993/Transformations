@@ -5,7 +5,7 @@ import scipy.cluster.hierarchy as sch
 import matplotlib.pyplot as plt
 import sys
 sys.path.append("/home/nick/Transformations/src")
-from pca import features
+from nnet import features
 
 
 def corr_plot(df, size=10, method="ward", title="Correlation Plot", save=False):
@@ -47,6 +47,6 @@ corr_plot(
     df=result.features, 
     size=10, 
     method="ward", 
-    title="Lung Capacity Correlation Plot For Principal Components", 
+    title="Lung Capacity Correlation Plot For Neural Network Components", 
     save=True,
 )
